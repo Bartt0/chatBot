@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distribuidora Río Claro — Operaciones & Ventas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Header minimalista estilo Linear / Vercel -->
+    <header class="topbar">
+      <div class="brand-identity">
+        <div class="brand-isotipo" aria-hidden="true">RC</div>
+        <div class="brand-meta">
+          <h1 class="brand-title">Distribuidora Río Claro</h1>
+          <span class="brand-subtitle">Operaciones &amp; Ventas</span>
+        </div>
+      </div>
+
+      <div class="status-pill" title="Guadalajara, Zapopan, León, Querétaro y Aguascalientes">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span class="status-text">5 Sucursales Conectadas</span>
+      </div>
+    </header>
+
+    <!-- Área central de conversación -->
+    <main class="workspace">
+      <section
+        id="messages"
+        class="messages-feed"
+        role="log"
+        aria-live="polite"
+        aria-relevant="additions"
+        aria-label="Historial de conversación"
+      >
+        <article class="msg-row msg-assistant">
+          <div class="msg-avatar" aria-hidden="true">RC</div>
+          <div class="msg-content">
+            <div class="msg-header">
+              <span class="msg-author">Asistente Río Claro</span>
+              <span class="msg-badge">IA Corporativa</span>
+            </div>
+            <div class="msg-bubble">Hola. Estoy conectado al catálogo institucional y reglas logísticas de Guadalajara, Zapopan, León, Querétaro y Aguascalientes. ¿Qué consulta de presentaciones, entregas o devoluciones deseas revisar?</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Dock inferior: Chips discretos + Barra de entrada + Pie de transparencia -->
+      <footer class="composer-dock">
+        <div class="quick-chips" aria-label="Consultas rápidas frecuentes">
+          <button
+            type="button"
+            class="chip"
+            data-query="Presentaciones de Cloro y Blanqueador"
+          >
+            Presentaciones de Cloro
+          </button>
+          <button
+            type="button"
+            class="chip"
+            data-query="Política oficial de devoluciones"
+          >
+            Política de devoluciones
+          </button>
+          <button
+            type="button"
+            class="chip"
+            data-query="Tiempos de entrega sucursal León"
+          >
+            Tiempos de entrega León
+          </button>
+        </div>
+
+        <form id="chat-form" class="composer-bar" novalidate>
+          <button
+            type="button"
+            id="voice-btn"
+            class="icon-btn voice-btn"
+            title="Dictado por voz (es-MX) para operación en bodega"
+            aria-label="Activar dictado por voz"
+            aria-pressed="false"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" x2="12" y1="19" y2="22"></line>
+            </svg>
+          </button>
+
+          <label for="user-input" class="sr-only">Mensaje</label>
+          <input
+            type="text"
+            id="user-input"
+            name="message"
+            class="composer-input"
+            placeholder="Consulta presentaciones, rutas de entrega o devoluciones..."
+            maxlength="2000"
+            autocomplete="off"
+            required
+          />
+
+          <button
+            type="submit"
+            id="send-btn"
+            class="icon-btn send-btn"
+            title="Enviar consulta"
+            aria-label="Enviar consulta"
+          >
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+
+        <div class="dock-footer">
+          <span id="voice-status" class="voice-feedback" aria-live="polite"></span>
+          <p class="legal-footnote">
+            Asistente impulsado por IA (Microsoft Foundry). Verifica disponibilidad de inventario en tiempo real y folios fiscales (UUID) con tu sucursal o Cuentas por Pagar.
+          </p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

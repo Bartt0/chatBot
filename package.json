@@ -1,0 +1,20 @@
+{
+  "name": "chatbot-rioclaro",
+  "version": "1.0.0",
+  "description": "Asistente corporativo de consulta comercial y logística para Distribuidora Río Claro integrado con Microsoft Foundry.",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.9"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file-if-exists=.env --watch server.js",
+    "create-agent": "node --env-file=.env scripts/create-agent.js"
+  },
+  "dependencies": {
+    "@azure/ai-projects": "^2.7.1",
+    "@azure/identity": "^4.13.3",
+    "express": "^5.2.1"
+  }
+}
