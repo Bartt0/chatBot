@@ -11,8 +11,8 @@
 | **Modelo e Integración** | Agente `asistente-rioclaro` sobre **Microsoft Foundry** (`gpt-5-mini`) |
 
 > ### 🌐 URL Pública Activa en Azure App Service
-> **`https://<app>.azurewebsites.net`**  
-> *(Espacio reservado para la URL productiva de la instancia Linux Node 24 LTS desplegada en Azure App Service: `https://chatbot-rioclaro-app.azurewebsites.net`)*
+> **[`https://rioclaro-bot-897.azurewebsites.net`](https://rioclaro-bot-897.azurewebsites.net)**  
+> *(Instancia productiva Linux Node 24 LTS desplegada en Azure App Service — Grupo de recursos: `rg-chatbot-rioclaro`)*
 
 ---
 
@@ -76,14 +76,63 @@ La solución implementa una **arquitectura web desacoplada de tres capas** dise�
 
 ---
 
-## 6. Evidencias de Funcionamiento y Despliegue
+## 6. Evidencias de Funcionamiento, Aprovisionamiento y Despliegue
 
-### 6.1 Captura del Asistente Respondiendo en Vivo (Interfaz Web Corporativa)
-> Coloca aquí la captura de pantalla de la interfaz de **Distribuidora Río Claro** mostrando los indicadores de las 5 sucursales (`GDL`, `ZAP`, `BJX`, `QRO`, `AGS`), el banner de transparencia de IA y una conversación activa con el agente `asistente-rioclaro`.
->
-> `![Evidencia UI Asistente en Vivo](./docs/evidencia-chat-vivo.png)`
+### 6.1 Aprovisionamiento del Agente en Microsoft Foundry (`rioclaro-foundry-res`)
 
-### 6.2 Captura de Terminal: Aprovisionamiento del Agente y Despliegue en Azure CLI
-> Coloca aquí la captura de pantalla de la terminal ejecutando `npm run create-agent` y los comandos de despliegue y asignación RBAC (`53ca6127-db72-4b80-b1b0-d745d6d5456d`) en Azure App Service.
->
-> `![Evidencia Terminal Despliegue Azure](./docs/evidencia-terminal-azure.png)`
+#### Agente `asistente-rioclaro` Activo y en Ejecución (Versión 1)
+Vista del panel de **Agentes** en Microsoft Foundry confirmando el aprovisionamiento exitoso de `asistente-rioclaro` en estado **En ejecución**.
+
+![Agente asistente-rioclaro en ejecución en Microsoft Foundry](./Docs/Captura%20de%20pantalla_20261106_233012.png)
+
+#### Configuración del Modelo `gpt-5-mini` e Instrucciones Corporativas
+Vista del **Área de juegos (Playground)** en Microsoft Foundry verificando el despliegue con el modelo `gpt-5-mini` (Estándar global) y las instrucciones operativas para las 5 sucursales de Distribuidora Río Claro.
+
+![Configuración del agente con modelo gpt-5-mini e instrucciones](./Docs/Captura%20de%20pantalla_20261106_233053.png)
+
+#### Identidad de Microsoft Entra ID, RBAC y Punto de Conexión del Protocolo de Respuestas
+Detalle técnico del agente mostrando su identidad administrada en Microsoft Entra (`asistente-rioclaro-AgentIdentity`), el acceso protegido por permisos RBAC de Azure y el endpoint activo del **Protocolo de respuestas**.
+
+![Detalles de identidad Entra ID y endpoint RBAC del agente](./Docs/Captura%20de%20pantalla_20261106_233200.png)
+
+---
+
+### 6.2 Implementación del Código Fuente y Servidor Backend Activo
+
+#### Estructura del Proyecto, Interfaz `public/index.html` y Servidor Express 5 en Ejecución
+Vista del entorno de desarrollo mostrando la arquitectura completa del repositorio (`.github/`, `public/`, `scripts/`, `server.js`) y la terminal con el servidor corporativo activo en el puerto `3000`.
+
+![Estructura del proyecto e interfaz HTML con servidor activo](./Docs/Captura%20de%20pantalla_20261106_234150.png)
+
+#### Script de Aprovisionamiento Automatizado (`scripts/create-agent.js`)
+Vista del script `scripts/create-agent.js` implementado con `@azure/ai-projects` y `DefaultAzureCredential` para registrar las reglas de catálogo, logística y devoluciones del agente.
+
+![Script de aprovisionamiento create-agent.js y terminal](./Docs/Captura%20de%20pantalla_20261106_234229.png)
+
+---
+
+### 6.3 Asistente Corporativo Respondiendo en Vivo (`chatbot-rioclaro`)
+
+#### Consulta en Vivo 1: Catálogo y Presentaciones de Cloro y Blanqueador
+Interfaz de producción de **Distribuidora Río Claro — Operaciones & Ventas** (`5 Sucursales Conectadas`) respondiendo en tiempo real sobre las presentaciones institucionales de 1 Litro, Galón (3.785 L), Porrón (20 L) y Tambor industrial (200 L).
+
+![Asistente respondiendo en vivo consulta de presentaciones de cloro](./Docs/Captura%20de%20pantalla_20261106_234252.png)
+
+#### Consulta en Vivo 2: Conversación Multi-Turno y Tiempos de Entrega en Sucursal León
+Continuación de la sesión activa (`conversation_id` persistente en memoria) respondiendo los tiempos de entrega para **Sucursal León** (24–48 horas hábiles en ruta local consolidada y hasta 72 horas hábiles para tambores de 200 L desde matriz).
+
+![Conversación multi-turno respondiendo tiempos de entrega en sucursal León](./Docs/Captura%20de%20pantalla_20261106_234313.png)
+
+---
+
+### 6.4 Despliegue en Producción en Azure App Service (`https://rioclaro-bot-897.azurewebsites.net`)
+
+#### Terminal de Despliegue Automatizado en Azure App Service (Linux, Plan B1)
+Ejecución del aprovisionamiento y despliegue de la Web App **`rioclaro-bot-897`** dentro del grupo de recursos **`rg-chatbot-rioclaro`** (región `swedencentral`, SKU `B1` en Linux), completando el empaquetado ZIP y compilación remota en Oryx/Kudu (`Status: Build successful`).
+
+![Terminal de despliegue en Azure App Service para rioclaro-bot-897](./Docs/Captura%20de%20pantalla_20261107_000038.png)
+
+#### Verificación en Producción desde la URL Pública (`https://rioclaro-bot-897.azurewebsites.net`)
+Aplicación ejecutándose en vivo desde el dominio público de Azure App Service con autenticación mediante **Managed Identity** contra **Microsoft Foundry**, respondiendo en una sesión multi-turno sin exponer credenciales en el navegador.
+
+![Aplicación en producción en https://rioclaro-bot-897.azurewebsites.net](./Docs/Captura%20de%20pantalla_20261107_000732.png)
