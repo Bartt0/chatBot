@@ -6,7 +6,7 @@
 | :--- | :--- |
 | **Proyecto** | `chatbot-rioclaro` — Asistente Comercial y Logístico Unificado |
 | **Organización Caso** | Distribuidora Río Claro S.A. de C.V. (140 colaboradores, 5 sucursales) |
-| **Consultor / Arquitecto** | Arquitecto de Software y Desarrollador Cloud Full Stack (Certificación Microsoft AI-901) |
+| **Autor / Consultor** | Fidel Arias Zavala (Certificación Microsoft AI-901) |
 | **Repositorio** | `chatbot-rioclaro` (Node.js 24 LTS + Express 5 + Microsoft Foundry SDK) |
 | **Modelo e Integración** | Agente `asistente-rioclaro` sobre **Microsoft Foundry** (`gpt-5-mini`) |
 
