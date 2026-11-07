@@ -3,29 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Distribuidora Río Claro — Operaciones & Ventas</title>
+  <meta name="theme-color" content="#0b0f19" />
+  <title>Distribuidora Río Claro — Operaciones &amp; Ventas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="dashboard-layout">
-    <!-- Header minimalista estilo Linear / Vercel -->
-    <header class="topbar">
-      <div class="brand-identity">
+    <button id="sidebar-backdrop" class="sidebar-backdrop" type="button" aria-label="Cerrar navegación"></button>
+
+    <aside id="sidebar" class="sidebar" aria-label="Navegación operativa">
+      <div class="sidebar-brand">
         <div class="brand-isotipo" aria-hidden="true">RC</div>
         <div class="brand-meta">
-          <h1 class="brand-title">Distribuidora Río Claro</h1>
+          <h1 class="brand-title">RÍO CLARO DISTRIBUIDORA</h1>
           <span class="brand-subtitle">Operaciones &amp; Ventas</span>
         </div>
       </div>
 
-      <div class="status-pill" title="Guadalajara, Zapopan, León, Querétaro y Aguascalientes">
-        <span class="pulse-dot" aria-hidden="true"></span>
-        <span class="status-text">5 Sucursales Conectadas</span>
-      </div>
-    </header>
+      <div class="sidebar-section-label">ESPACIO DE TRABAJO</div>
+      <nav class="domain-nav" aria-label="Módulos operativos">
+        <button type="button" id="show-chat-btn" class="nav-main-button">Conversación actual</button>
+        <details class="nav-group">
+          <summary class="nav-summary">
+            <span class="nav-icon" aria-hidden="true">◈</span>
+            <span>Catálogo químico</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="nav-subitems">
+            <button type="button" class="nav-action" data-module="catalogo">Presentaciones y fichas técnicas</button>
+          </div>
+        </details>
 
-    <!-- Área central de conversación -->
+        <details class="nav-group" open>
+          <summary class="nav-summary">
+            <span class="nav-icon" aria-hidden="true">⌁</span>
+            <span>Rutas de logística y flota</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="branch-list" aria-label="Sucursales">
+            <button type="button" class="branch-link" data-branch="Guadalajara"><span class="branch-dot" aria-hidden="true"></span>Guadalajara</button>
+            <button type="button" class="branch-link" data-branch="Zapopan"><span class="branch-dot" aria-hidden="true"></span>Zapopan</button>
+            <button type="button" class="branch-link" data-branch="León"><span class="branch-dot" aria-hidden="true"></span>León</button>
+            <button type="button" class="branch-link" data-branch="Querétaro"><span class="branch-dot" aria-hidden="true"></span>Querétaro</button>
+            <button type="button" class="branch-link" data-branch="Aguascalientes"><span class="branch-dot" aria-hidden="true"></span>Aguascalientes</button>
+          </div>
+        </details>
+
+        <details class="nav-group">
+          <summary class="nav-summary">
+            <span class="nav-icon nav-icon-mono" aria-hidden="true">#</span>
+            <span>Facturación y folios fiscales</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="nav-subitems">
+            <button type="button" class="nav-action" data-module="facturacion">CFDI 4.0 y UUID</button>
+          </div>
+        </details>
+
+        <details class="nav-group">
+          <summary class="nav-summary">
+            <span class="nav-icon" aria-hidden="true">↻</span>
+            <span>Devolución de tambores</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="nav-subitems">
+            <button type="button" class="nav-action" data-module="devoluciones">Políticas de envases retornables</button>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-summary">
+            <span class="nav-icon" aria-hidden="true">◇</span>
+            <span>Clientes</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="nav-subitems">
+            <button type="button" class="nav-action" data-module="clientes">Segmentos de clientes</button>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary class="nav-summary">
+            <span class="nav-icon" aria-hidden="true">▦</span>
+            <span>Proveedores</span>
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="nav-subitems">
+            <button type="button" class="nav-action" data-module="proveedores">Categorías de proveedores</button>
+          </div>
+        </details>
+      </nav>
+
+      <section class="history-section" aria-labelledby="history-heading">
+        <h2 id="history-heading" class="sidebar-section-label">CONVERSACIONES RECIENTES</h2>
+        <p class="history-caption">Hasta 6, solo en esta pestaña.</p>
+        <p id="history-status" class="history-caption" role="status" aria-live="polite"></p>
+        <div id="conversation-list" class="conversation-list"></div>
+      </section>
+
+      <div class="sidebar-footer">
+        <button type="button" class="support-link context-action" data-context-query="Necesito ayuda y soporte para una operación de Distribuidora Río Claro.">
+          <span class="support-icon" aria-hidden="true">?</span>
+          Ayuda y soporte
+          <span class="support-shortcut" aria-hidden="true">↗</span>
+        </button>
+        <div class="operator-profile">
+          <div class="operator-avatar" aria-hidden="true">OP</div>
+          <div class="operator-meta">
+            <span class="operator-name">Operador activo</span>
+            <span class="operator-role">Equipo de operaciones</span>
+          </div>
+          <span class="operator-status" title="Sesión activa" aria-label="Sesión activa"></span>
+        </div>
+      </div>
+    </aside>
+
     <main class="workspace">
+      <header class="topbar">
+        <div class="header-title-group">
+          <button
+            type="button"
+            id="sidebar-toggle"
+            class="menu-toggle"
+            aria-label="Abrir navegación"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+          <div>
+            <p class="eyebrow">CONSOLA OPERATIVA</p>
+            <h2 class="workspace-title">Asistente de Operaciones</h2>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="status-pill" title="Guadalajara, Zapopan, León, Querétaro y Aguascalientes">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span class="status-text">5 Sucursales Conectadas</span>
+          </div>
+          <button type="button" id="new-chat-btn" class="new-chat-btn">
+            <span aria-hidden="true">+</span>
+            Nueva Consulta
+          </button>
+        </div>
+      </header>
+
+      <p id="storage-status" class="storage-status" role="status" aria-live="polite" hidden></p>
+
+      <section id="information-view" class="information-view" aria-labelledby="information-title" hidden>
+        <div class="information-inner">
+          <div class="information-heading">
+            <div>
+              <p class="eyebrow">EXPLORADOR OPERATIVO</p>
+              <h2 id="information-title" tabindex="-1"></h2>
+              <p id="information-description" class="information-description"></p>
+            </div>
+            <button type="button" id="return-chat-btn" class="secondary-btn">Volver al chat</button>
+          </div>
+          <p class="example-notice">Información de ejemplo anonimizada y de solo lectura. No refleja inventario, condiciones ni disponibilidad en tiempo real; confirma los datos con la sucursal.</p>
+          <div id="information-items" class="information-items"></div>
+        </div>
+      </section>
+
       <section
         id="messages"
         class="messages-feed"
@@ -34,91 +178,73 @@
         aria-relevant="additions"
         aria-label="Historial de conversación"
       >
-        <article class="msg-row msg-assistant">
-          <div class="msg-avatar" aria-hidden="true">RC</div>
-          <div class="msg-content">
-            <div class="msg-header">
-              <span class="msg-author">Asistente Río Claro</span>
-              <span class="msg-badge">IA Corporativa</span>
+        <div class="conversation-canvas">
+          <article class="msg-row msg-assistant welcome-message">
+            <div class="msg-avatar" aria-hidden="true">RC</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-author">Asistente Río Claro</span>
+                <span class="msg-badge">IA Corporativa</span>
+              </div>
+              <div class="msg-bubble">
+                <p>Hola. Estoy conectado al catálogo institucional y a las reglas logísticas de Guadalajara, Zapopan, León, Querétaro y Aguascalientes.</p>
+                <p>¿Qué consulta de presentaciones, entregas o devoluciones deseas revisar?</p>
+              </div>
             </div>
-            <div class="msg-bubble">Hola. Estoy conectado al catálogo institucional y reglas logísticas de Guadalajara, Zapopan, León, Querétaro y Aguascalientes. ¿Qué consulta de presentaciones, entregas o devoluciones deseas revisar?</div>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
 
-      <!-- Dock inferior: Chips discretos + Barra de entrada + Pie de transparencia -->
       <footer class="composer-dock">
-        <div class="quick-chips" aria-label="Consultas rápidas frecuentes">
-          <button
-            type="button"
-            class="chip"
-            data-query="Presentaciones de Cloro y Blanqueador"
-          >
-            Presentaciones de Cloro
-          </button>
-          <button
-            type="button"
-            class="chip"
-            data-query="Política oficial de devoluciones"
-          >
-            Política de devoluciones
-          </button>
-          <button
-            type="button"
-            class="chip"
-            data-query="Tiempos de entrega sucursal León"
-          >
-            Tiempos de entrega León
-          </button>
-        </div>
+        <div class="composer-inner">
+          <div class="quick-chips" aria-label="Consultas rápidas frecuentes">
+            <span class="quick-label">CONSULTAS FRECUENTES</span>
+            <button type="button" class="chip" data-query="Presentaciones de Cloro y Blanqueador">Presentaciones de Cloro</button>
+            <button type="button" class="chip" data-query="Política oficial de devoluciones">Política de devoluciones</button>
+            <button type="button" class="chip" data-query="Tiempos de entrega sucursal León">Tiempos de entrega León</button>
+          </div>
 
-        <form id="chat-form" class="composer-bar" novalidate>
-          <button
-            type="button"
-            id="voice-btn"
-            class="icon-btn voice-btn"
-            title="Dictado por voz (es-MX) para operación en bodega"
-            aria-label="Activar dictado por voz"
-            aria-pressed="false"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" x2="12" y1="19" y2="22"></line>
-            </svg>
-          </button>
+          <form id="chat-form" class="composer-bar" novalidate>
+            <button
+              type="button"
+              id="voice-btn"
+              class="icon-btn voice-btn"
+              title="Dictado por voz (es-MX) para operación en bodega"
+              aria-label="Activar dictado por voz"
+              aria-pressed="false"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" x2="12" y1="19" y2="22"></line>
+              </svg>
+            </button>
+            <label for="user-input" class="sr-only">Mensaje</label>
+            <input
+              type="text"
+              id="user-input"
+              name="message"
+              class="composer-input"
+              placeholder="Consulta presentaciones, rutas de entrega o devoluciones..."
+              maxlength="2000"
+              autocomplete="off"
+              required
+            />
+            <button type="submit" id="send-btn" class="send-btn">
+              Enviar
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
 
-          <label for="user-input" class="sr-only">Mensaje</label>
-          <input
-            type="text"
-            id="user-input"
-            name="message"
-            class="composer-input"
-            placeholder="Consulta presentaciones, rutas de entrega o devoluciones..."
-            maxlength="2000"
-            autocomplete="off"
-            required
-          />
-
-          <button
-            type="submit"
-            id="send-btn"
-            class="icon-btn send-btn"
-            title="Enviar consulta"
-            aria-label="Enviar consulta"
-          >
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="22" y1="2" x2="11" y2="13"></line>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-            </svg>
-          </button>
-        </form>
-
-        <div class="dock-footer">
-          <span id="voice-status" class="voice-feedback" aria-live="polite"></span>
-          <p class="legal-footnote">
-            Asistente impulsado por IA (Microsoft Foundry). Verifica disponibilidad de inventario en tiempo real y folios fiscales (UUID) con tu sucursal o Cuentas por Pagar.
-          </p>
+          <div class="dock-footer">
+            <span id="voice-status" class="voice-feedback" aria-live="polite"></span>
+            <p class="legal-footnote">
+              Asistente impulsado por IA (Microsoft Foundry). Verifica disponibilidad de inventario en tiempo real y folios fiscales (UUID) con tu sucursal o Cuentas por Pagar.
+            </p>
+          </div>
         </div>
       </footer>
     </main>

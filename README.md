@@ -35,6 +35,18 @@ La aplicación sigue una **arquitectura web desacoplada de tres capas**, donde e
 - **Seguridad y Prevención de XSS**: Validación estricta de entrada (`1` a `2000` caracteres -> HTTP `422`), respuestas seguras ante fallos aguas arriba (HTTP `502` genérico sin exponer trazas) y renderizado en el DOM exclusivamente mediante `textContent` (cero uso de `innerHTML`).
 - **Inclusión Operativa por Voz (`es-MX`)**: Integración nativa con la **Web Speech API** para permitir consultas manos libres desde el piso de bodega y almacén.
 - **Interfaz Moderna en Modo Oscuro**: Diseño limpio estilo dashboard con indicadores de sucursales activas y chips de consulta rápida.
+- **Explorador Informativo**: Fichas de ejemplo y de solo lectura para catálogo, sucursales, facturación, devoluciones, clientes y proveedores; desde ellas se puede preparar o enviar una pregunta al asistente.
+- **Conversaciones Recientes**: Hasta seis conversaciones por pestaña, con opción de retomarlas o eliminarlas.
+
+---
+
+## Explorador y conversaciones recientes
+
+El menú lateral abre información de ejemplo en modo de consulta. Cada ficha ofrece **Preparar pregunta**, que añade una consulta editable al borrador, y **Consultar ahora**, que envía una consulta predefinida mediante el chat. No se crean ni modifican registros de negocio desde estas vistas. Los datos no representan disponibilidad, inventario ni condiciones vigentes; verifica la información con la sucursal o el área correspondiente.
+
+Los extractos de `public/example-data.js` se prepararon a partir de los documentos de ejemplo de `Docs/md/`: catálogo técnico, directorio de sucursales y rutas, conciliación fiscal, procedimientos internos y directorios de clientes y proveedores. Para actualizarlos, revisa las fuentes, edita únicamente los datos públicos anonimizados y vuelve a comprobar que no se incluyan datos personales, contactos, identificadores fiscales, importes ni condiciones negociadas. Los documentos originales no se publican en el navegador; cualquier archivo añadido a `public/` será accesible a quienes puedan abrir la aplicación.
+
+El historial utiliza `sessionStorage` del navegador y conserva hasta **seis conversaciones o borradores por pestaña**, incluidos mensajes, texto pendiente e identificadores de conversación. Al escribir en una séptima se descarta la menos reciente. El historial puede sobrevivir a una recarga, pero no se sincroniza entre dispositivos ni pestañas y se pierde al cerrar la pestaña; el navegador puede aplicar políticas adicionales de conservación. No guardes información sensible en dispositivos compartidos. Si el almacenamiento no está disponible o se llena, la interfaz mostrará un aviso y el chat podrá continuar sin garantía de restauración. Retomar una conversación envía su `conversation_id` existente; su disponibilidad depende del servicio.
 
 ---
 
@@ -54,7 +66,8 @@ La aplicación sigue una **arquitectura web desacoplada de tres capas**, donde e
 ├── public/
 │   ├── index.html                          # Interfaz corporativa Distribuidora Río Claro
 │   ├── styles.css                          # Estilos responsivos en modo oscuro nativo
-│   └── app.js                              # Lógica de cliente, textContent y Web Speech API
+│   ├── app.js                              # Lógica de cliente, textContent y Web Speech API
+│   └── example-data.js                     # Extractos informativos anonimizados
 ├── scripts/
 │   └── create-agent.js                     # Script de aprovisionamiento del agente en Foundry
 ├── .env.example                            # Plantilla de variables de entorno
